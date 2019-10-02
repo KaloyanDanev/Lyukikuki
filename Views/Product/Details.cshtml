@@ -1,0 +1,20 @@
+﻿@model Product
+
+@{
+    ViewData["Title"] = $"{@Model.Name} - Lyukikuki Groceries";
+}
+
+<div class="container marginTop">
+    <div class="row glyphicon-align-center">
+        <div class="text-center">
+            <h4>@Model.Name</h4>
+            <b>@Model.Price.ToString("c")</b>
+            <p class="btn btn-group">
+                <a class="btn btn-success" id="cartButton" asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-productId="@Model.ProductId">
+                   Add
+                </a>
+            </p>
+        </div>
+        <img height="250" style="margin-top: -10%" src="@Model.ImageUrl" alt="" />
+    </div>
+</div>
