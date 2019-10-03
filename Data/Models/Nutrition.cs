@@ -19,7 +19,7 @@ namespace Lyukikuki.Data.Models
 
         public double Sugars { get; set; }
 
-        public double Fibre { get; set; }
+        public double Fiber { get; set; }
 
         public double Protein { get; set; }
 

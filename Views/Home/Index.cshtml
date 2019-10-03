@@ -1,7 +1,16 @@
-﻿@await Html.PartialAsync("Carousel")
+﻿@model HomeViewModel
+
+@await Html.PartialAsync("Carousel")
 
 @{
     ViewData["Title"] = "Lyukikuki - online shopping";
 }
 
-<div class="text-center"><h1><b>Newest Products</b></h1></div>
+<div class="text-center marginTop"><h1><b>Newest Products</b></h1></div>
+
+<div class="row">
+    @foreach (var product in Model.NewProducts)
+    {
+        @Html.Partial("ProductsSummary", product)
+    }
+</div>

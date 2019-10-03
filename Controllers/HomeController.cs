@@ -11,23 +11,21 @@ namespace Lyukikuki.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IProductRepository productRepository;
+        private readonly IProductRepository _productRepository;
 
         public HomeController(IProductRepository productRepository)
         {
-            this.productRepository = productRepository;
+            this._productRepository = productRepository;
         }
 
         public IActionResult Index()
         {
-            var products = this.productRepository.GetProductById(6);
-
-            var vm = new IndexViewModel
+            var homeViewModel = new HomeViewModel
             {
-                
+                NewProducts = _productRepository.Products.OrderByDescending(x=>x.ProductId).Take(12)
             };
+            return View(homeViewModel);
 
-            return View(vm);
         }
     }
 }

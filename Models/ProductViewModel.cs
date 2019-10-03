@@ -16,6 +16,6 @@ namespace Lyukikuki.Models
 
         public string ImageUrl { get; set; }
 
-        public Nutrition Nutrition { get; set; }
+        public IEnumerable<Product> Nutrition { get; set; }
     }
 }

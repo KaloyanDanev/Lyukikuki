@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Lyukikuki.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190909170753_cartitem")]
-    partial class cartitem
+    [Migration("20191003115357_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -34,6 +34,102 @@ namespace Lyukikuki.Data.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("Lyukikuki.Data.Models.Nutrition", b =>
+                {
+                    b.Property<int>("NutritionId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<double>("Carbohydrate");
+
+                    b.Property<double>("Energy");
+
+                    b.Property<double>("Fat");
+
+                    b.Property<double>("Fiber");
+
+                    b.Property<double>("Protein");
+
+                    b.Property<double>("Salt");
+
+                    b.Property<double>("Saturates");
+
+                    b.Property<double>("Sugars");
+
+                    b.HasKey("NutritionId");
+
+                    b.ToTable("Nutritions");
+                });
+
+            modelBuilder.Entity("Lyukikuki.Data.Models.Order", b =>
+                {
+                    b.Property<int>("OrderId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AddressLine")
+                        .IsRequired()
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<DateTime>("OrderPlaced");
+
+                    b.Property<decimal>("OrderTotal");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasMaxLength(25);
+
+                    b.Property<string>("State")
+                        .HasMaxLength(10);
+
+                    b.Property<string>("ZipCode")
+                        .IsRequired()
+                        .HasMaxLength(10);
+
+                    b.HasKey("OrderId");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("Lyukikuki.Data.Models.OrderDetail", b =>
+                {
+                    b.Property<int>("OrderDetailId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Amount");
+
+                    b.Property<int>("OrderId");
+
+                    b.Property<decimal>("Price");
+
+                    b.Property<int>("ProductId");
+
+                    b.HasKey("OrderDetailId");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("OrderDetails");
+                });
+
             modelBuilder.Entity("Lyukikuki.Data.Models.Product", b =>
                 {
                     b.Property<int>("ProductId")
@@ -48,11 +144,15 @@ namespace Lyukikuki.Data.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<int?>("NutritionId");
+
                     b.Property<decimal>("Price");
 
                     b.HasKey("ProductId");
 
                     b.HasIndex("CategoryId");
+
+                    b.HasIndex("NutritionId");
 
                     b.ToTable("Products");
                 });
@@ -241,12 +341,29 @@ namespace Lyukikuki.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("Lyukikuki.Data.Models.OrderDetail", b =>
+                {
+                    b.HasOne("Lyukikuki.Data.Models.Order", "Order")
+                        .WithMany("OrderLines")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Lyukikuki.Data.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("Lyukikuki.Data.Models.Product", b =>
                 {
                     b.HasOne("Lyukikuki.Data.Models.Category", "Category")
                         .WithMany("Products")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Lyukikuki.Data.Models.Nutrition", "Nutrition")
+                        .WithMany()
+                        .HasForeignKey("NutritionId");
                 });
 
             modelBuilder.Entity("Lyukikuki.Data.Models.ShoppingCartItem", b =>

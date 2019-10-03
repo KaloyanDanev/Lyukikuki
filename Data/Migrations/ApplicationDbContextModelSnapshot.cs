@@ -44,7 +44,7 @@ namespace Lyukikuki.Data.Migrations
 
                     b.Property<double>("Fat");
 
-                    b.Property<double>("Fibre");
+                    b.Property<double>("Fiber");
 
                     b.Property<double>("Protein");
 

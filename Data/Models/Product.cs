@@ -21,8 +21,6 @@ namespace Lyukikuki.Data.Models
 
         public virtual Category Category { get; set; }
 
-        public int NutritionId { get; set; }
-
         public virtual Nutrition Nutrition { get; set; }
     }
 }
