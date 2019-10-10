@@ -17,10 +17,30 @@ namespace Lyukikuki.Data.Models
 
         public bool InStock { get; set; }
 
+        public string ProductDetails { get; set; }
+
+        //Nutrition
+
+        public double EnergyKj { get; set; }
+
+        public double EnergyKcal { get; set; }
+
+        public double Fat { get; set; }
+
+        public double Saturates { get; set; }
+
+        public double Carbohydrate { get; set; }
+
+        public double Sugars { get; set; }
+
+        public double Protein { get; set; }
+
+        public double Salt { get; set; }
+
+        //
+
         public int CategoryId { get; set; }
 
         public virtual Category Category { get; set; }
-
-        public virtual Nutrition Nutrition { get; set; }
     }
 }

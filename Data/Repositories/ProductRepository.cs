@@ -17,7 +17,6 @@ namespace Lyukikuki.Data.Repositories
         }
 
         public IEnumerable<Product> Products => _applicationDbContext.Products.Include(c => c.Category);
-        public IEnumerable<Nutrition> Nutritions { get; }
 
         public Product GetProductById(int productId) =>
             _applicationDbContext.Products.FirstOrDefault(p => p.ProductId == productId);

@@ -8,8 +8,6 @@ namespace Lyukikuki.Data.Interfaces
     {
         IEnumerable<Product> Products { get; }
 
-        IEnumerable<Nutrition> Nutritions { get; }
-
         Product GetProductById(int productId);
     }
 }

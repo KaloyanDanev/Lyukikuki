@@ -45,8 +45,6 @@ namespace Lyukikuki.Data.Mocks
 
         }
 
-        public IEnumerable<Nutrition> Nutritions { get; }
-
         public Product GetProductById(int productId)
         {
             throw new NotImplementedException();

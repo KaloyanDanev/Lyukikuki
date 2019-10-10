@@ -15,7 +15,5 @@ namespace Lyukikuki.Models
         public decimal Price { get; set; }
 
         public string ImageUrl { get; set; }
-
-        public IEnumerable<Product> Nutrition { get; set; }
     }
 }

@@ -1,0 +1,20 @@
+﻿@model Product
+
+<div class="col-sm-4 col-lg-4 col-md-4">
+    <div class="thumbnail">
+        <a asp-controller="Product" asp-action="Details" asp-route-productId="@Model.ProductId">
+            <img height="170" width="190" src="@Model.ImageUrl" alt="" />
+        </a>
+        <div class="caption">
+            <h5 class="col-sm-8" style="margin-top: 10%">
+                <a asp-controller="Product" asp-action="Details" asp-route-productId="@Model.ProductId">@Model.Name</a>
+            </h5>
+        </div>
+        <div class="text-right">
+            <h4>@Model.Price.ToString("c")</h4>
+            <a class="btn btn-success" id="cartButton" asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-productId="@Model.ProductId">
+                Add to cart
+            </a>
+        </div>
+    </div>
+</div>

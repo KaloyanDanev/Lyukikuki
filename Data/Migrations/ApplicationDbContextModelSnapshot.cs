@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Lyukikuki.Data.Migrations
+namespace Lyukikuki.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -30,33 +30,6 @@ namespace Lyukikuki.Data.Migrations
                     b.HasKey("CategoryId");
 
                     b.ToTable("Categories");
-                });
-
-            modelBuilder.Entity("Lyukikuki.Data.Models.Nutrition", b =>
-                {
-                    b.Property<int>("NutritionId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<double>("Carbohydrate");
-
-                    b.Property<double>("Energy");
-
-                    b.Property<double>("Fat");
-
-                    b.Property<double>("Fiber");
-
-                    b.Property<double>("Protein");
-
-                    b.Property<double>("Salt");
-
-                    b.Property<double>("Saturates");
-
-                    b.Property<double>("Sugars");
-
-                    b.HasKey("NutritionId");
-
-                    b.ToTable("Nutritions");
                 });
 
             modelBuilder.Entity("Lyukikuki.Data.Models.Order", b =>
@@ -134,7 +107,15 @@ namespace Lyukikuki.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<double>("Carbohydrate");
+
                     b.Property<int>("CategoryId");
+
+                    b.Property<double>("EnergyKcal");
+
+                    b.Property<double>("EnergyKj");
+
+                    b.Property<double>("Fat");
 
                     b.Property<string>("ImageUrl");
 
@@ -142,15 +123,21 @@ namespace Lyukikuki.Data.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<int?>("NutritionId");
-
                     b.Property<decimal>("Price");
+
+                    b.Property<string>("ProductDetails");
+
+                    b.Property<double>("Protein");
+
+                    b.Property<double>("Salt");
+
+                    b.Property<double>("Saturates");
+
+                    b.Property<double>("Sugars");
 
                     b.HasKey("ProductId");
 
                     b.HasIndex("CategoryId");
-
-                    b.HasIndex("NutritionId");
 
                     b.ToTable("Products");
                 });
@@ -358,10 +345,6 @@ namespace Lyukikuki.Data.Migrations
                         .WithMany("Products")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Lyukikuki.Data.Models.Nutrition", "Nutrition")
-                        .WithMany()
-                        .HasForeignKey("NutritionId");
                 });
 
             modelBuilder.Entity("Lyukikuki.Data.Models.ShoppingCartItem", b =>
