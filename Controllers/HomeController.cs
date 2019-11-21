@@ -25,7 +25,7 @@ namespace Lyukikuki.Controllers
                 NewProducts = _productRepository.Products.OrderByDescending(x=>x.ProductId).Take(12)
             };
             return View(homeViewModel);
-
+        
         }
     }
 }

@@ -10,6 +10,6 @@ namespace Lyukikuki.Models
     {
         public ShoppingCart ShoppingCart { get; set; }
 
-        public decimal ShoppingCartTotal { get; set; }
+        public decimal ShoppingCartTotal { get; set; }  
     }
 }

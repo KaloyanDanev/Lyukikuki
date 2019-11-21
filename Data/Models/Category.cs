@@ -10,7 +10,7 @@ namespace Lyukikuki.Data.Models
         public int CategoryId { get; set; }
 
         public string CategoryName { get; set; }
-
-        public List<Product> Products { get; set; }
+            
+        public IEnumerable<Product> Products { get; set; }
     }
 }

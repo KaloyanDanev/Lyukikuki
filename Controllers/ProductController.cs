@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Lyukikuki.Data;
 using Lyukikuki.Data.Interfaces;
 using Lyukikuki.Data.Models;
 using Lyukikuki.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Lyukikuki.Controllers
 {
@@ -12,11 +15,13 @@ namespace Lyukikuki.Controllers
     {
         private readonly IProductRepository _productRepository;
         private readonly ICategoryRepository _categoryRepository;
+        private readonly ApplicationDbContext _context;
 
-        public ProductController(IProductRepository productRepository, ICategoryRepository categoryRepository)
+        public ProductController(IProductRepository productRepository, ICategoryRepository categoryRepository, ApplicationDbContext context)
         {
             _productRepository = productRepository;
             _categoryRepository = categoryRepository;
+            _context = context;
         }
 
         public ViewResult List(string category)
@@ -52,6 +57,7 @@ namespace Lyukikuki.Controllers
                 CurrentCategory = currentCategory
             });
         }
+
         public ViewResult Search(string searchString)
         {
             string _searchString = searchString;
@@ -68,6 +74,33 @@ namespace Lyukikuki.Controllers
             }
 
             return View("~/Views/Product/List.cshtml", new ProductListViewModel { Products = products, CurrentCategory = "All products" });
+        }
+
+        public IActionResult AddOrEdit(int id = 0)
+        {
+            if (id == 0)
+                return View(new Product());
+            else
+                return View(_context.Products.Find(id));
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddOrEdit([Bind("ProductId,Name,Price,ImageUrl,InStock," +
+        "ProductDetails,EnergyKj,EnergyKcal,Fat,Saturates,Carbohydrate," +
+        "Sugars,Protein,Salt,CategoryId,Category")] Product product)
+        {
+            if (ModelState.IsValid)
+            {
+                if (product.ProductId == 0)
+                    _context.Add(product);
+                else
+                    _context.Update(product);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(List));
+            }
+            return View(product);
         }
 
         public ViewResult Details(int productId)

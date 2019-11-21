@@ -1,0 +1,117 @@
+﻿@using Lyukikuki.Component
+@using Lyukikuki.Data.Interfaces
+@model Product
+@{
+    ViewData["Title"] = "Create Product";
+}
+
+<h4>Create Product</h4>
+
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="AddOrEdit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ProductId" />
+
+            <div class="form-group">
+                <label asp-for="Name">Name</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input type="number" min="0.00" max="10000.00" step="0.01" asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ImageUrl" class="control-label">Image Url</label>
+                <input asp-for="ImageUrl" class="form-control" />
+                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="InStock" class="control-label">Item in stock ?</label>
+                <label>
+                    <input type="radio" asp-for="InStock" value="true" /> Yes
+                </label>
+                <label>
+                    <input type="radio" asp-for="InStock" value="false" /> No
+                </label>
+                <span asp-validation-for="InStock" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ProductDetails" class="control-label">Description</label>
+                <textarea asp-for="ProductDetails" class="form-control"></textarea>
+                <span asp-validation-for="ProductDetails" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="EnergyKj" class="control-label">Energy Kj</label>
+                <input type="number" min="0.00" max="10000.00" step="0.01" asp-for="EnergyKj" class="form-control" />
+                <span asp-validation-for="EnergyKj" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="EnergyKcal" class="control-label">Energy Kcal</label>
+                <input type="number" min="0.00" max="10000.00" step="0.01" asp-for="EnergyKcal" class="form-control" />
+                <span asp-validation-for="EnergyKcal" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Fat" class="control-label">Fat</label>
+                <input type="number" min="0.00" max="10000.00" step="0.01" asp-for="Fat" class="form-control" />
+                <span asp-validation-for="Fat" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Saturates" class="control-label">Saturates</label>
+                <input type="number" min="0.00" max="10000.00" step="0.01" asp-for="Saturates" class="form-control" />
+                <span asp-validation-for="Saturates" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Carbohydrate" class="control-label">Carbohydrate</label>
+                <input type="number" min="0.00" max="10000.00" step="0.01" asp-for="Carbohydrate" class="form-control" />
+                <span asp-validation-for="Carbohydrate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Sugars" class="control-label">Sugars</label>
+                <input type="number" min="0.00" max="10000.00" step="0.01" asp-for="Sugars" class="form-control" />
+                <span asp-validation-for="Sugars" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Protein" class="control-label">Protein</label>
+                <input type="number" min="0.00" max="10000.00" step="0.01" asp-for="Protein" class="form-control" />
+                <span asp-validation-for="Protein" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Salt" class="control-label">Salt</label>
+                <input type="number" min="0.00" max="10000.00" step="0.01" asp-for="Salt" class="form-control" />
+                <span asp-validation-for="Salt" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CategoryId" class="control-label">Category</label>
+                <select asp-for="CategoryId" class="form-control"></select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <a asp-controller="Home" asp-action="Index" class="btn btn-secondary btn-block"><i class="fa fa-table"></i>Back to Home</a>
+        </form>
+
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
