@@ -24,16 +24,15 @@
             <div class="col-sm-5">
                 <h4>Product Details</h4>
                 @Model.ProductDetails
-             
-            </div>    
+            </div>
 
             <table class="col-sm-3">
                 <caption>Nutrition</caption>
                 <thead>
-                <tr>
-                    <th scope="col">Typical Values</th>
-                    <th scope="col">per 100g :</th>
-                </tr>
+                    <tr>
+                        <th scope="col">Typical Values</th>
+                        <th scope="col">per 100g :</th>
+                    </tr>
                 </thead>
                 <tbody>
                     <tr><th scope="row">Energy (kJ)</th><td>@Model.EnergyKj</td></tr>
@@ -49,3 +48,6 @@
         </div>
     </div>
 </div>
+
+    <a asp-action="Delete" asp-route-id="@Model.ProductId" class="text-danger" onclick="return confirm('Are you sure to delete this product?')">Delete Product<i class="fa fa-trash-alt fa-lg"></i></a>
+

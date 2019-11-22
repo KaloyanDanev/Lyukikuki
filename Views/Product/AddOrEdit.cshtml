@@ -1,6 +1,7 @@
 ﻿@using Lyukikuki.Component
 @using Lyukikuki.Data.Interfaces
 @model Product
+
 @{
     ViewData["Title"] = "Create Product";
 }
@@ -12,7 +13,7 @@
     <div class="col-md-6">
         <form asp-action="AddOrEdit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="ProductId" />
+            <input type="hidden" asp-for="ProductId" />     
 
             <div class="form-group">
                 <label asp-for="Name">Name</label>

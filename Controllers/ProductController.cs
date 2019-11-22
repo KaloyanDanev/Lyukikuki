@@ -84,7 +84,6 @@ namespace Lyukikuki.Controllers
                 return View(_context.Products.Find(id));
         }
 
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddOrEdit([Bind("ProductId,Name,Price,ImageUrl,InStock," +
@@ -111,6 +110,14 @@ namespace Lyukikuki.Controllers
                 return View("~/Views/Error/Error.cshtml");
             }
             return View(product);
+        }
+
+        public async Task<IActionResult> Delete(int? id)
+        {
+            var product = await _context.Products.FindAsync(id);
+            _context.Products.Remove(product);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(List));
         }
     }
 }
