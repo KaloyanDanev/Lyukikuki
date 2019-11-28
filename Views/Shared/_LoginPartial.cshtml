@@ -4,8 +4,12 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-    <ul class="nav navbar-nav navbar-right" style="margin-top: 0.5%">
-        <li>
+    <ul class="nav navbar-nav navbar-right">
+        @if (User.Identity.Name == "admin@admin.com")
+        {
+            <li> <a asp-controller="Product" asp-action="AddOrEdit" class="btn btn-outline-success">Create</a></li>
+        }
+        <li style="margin-top: 5%">
             <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new {area = ""})">
                 <button type="submit" class="btn btn-link">Logout</button>
             </form>
@@ -15,7 +19,10 @@
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li><a asp-controller="Product" asp-action="AddOrEdit" class="btn btn-outline-success">Create</a></li>
+        @if (User.Identity.Name == "admin@admin.com")
+        {
+            <li> <a asp-controller="Product" asp-action="AddOrEdit" class="btn btn-outline-success">Create</a></li>
+        }
         <li> <a asp-area="Identity" asp-page="/Account/Register">Register</a></li>
         <li> <a asp-area="Identity" asp-page="/Account/Login">Login</a></li>
     </ul>

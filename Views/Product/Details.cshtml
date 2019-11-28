@@ -48,6 +48,8 @@
         </div>
     </div>
 </div>
-
+@if (User.Identity.Name == "admin@admin.com")
+{
     <a asp-action="Delete" asp-route-id="@Model.ProductId" class="text-danger" onclick="return confirm('Are you sure to delete this product?')">Delete Product<i class="fa fa-trash-alt fa-lg"></i></a>
+}
 
