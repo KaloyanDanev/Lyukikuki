@@ -27,10 +27,10 @@
                     </td>
                         <td class="text-center"><div style="margin-top: 10%">@line.Amount</div></td>
                         <td class="text-center"><div style="margin-top: 4%">@line.Product.Name</div></td>
-                        <td class="text-right"><div style="margin-top: 17%">@line.Product.Price.ToString("c")</div></td>
+                        <td class="text-right"><div style="margin-top: 17%">@line.Product.Price £</div></td>
                         <td class="text-right">
                             <div style="margin-top: 17%">
-                                @((line.Amount * line.Product.Price).ToString("c"))
+                                @((line.Amount * line.Product.Price) + "£")
                             </div>
                         </td>
                     <td class="text-center">
@@ -47,7 +47,7 @@
             <tr>
                 <td colspan="3" class="text-right">Total:</td>
                 <td class="text-right">
-                    @Model.ShoppingCartTotal.ToString("c")
+                    @Model.ShoppingCartTotal £
                 </td>
             </tr>
         </tfoot>

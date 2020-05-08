@@ -1,40 +1,26 @@
 ﻿@model Product
-
 @{
     ViewData["Title"] = $"{@Model.Name} - Lyukikuki Groceries";
 }
-
 <div class="container col-sm-12 marginTop">
     <div class="row glyphicon-align-center">
-        <img height="250" style="float: left" class="marginTop1" src="@Model.ImageUrl" alt="ProductImage" />
-
-        <div class="text-center">
-            <h3>
-                @Model.Name
-                <h4>
-                    @Model.Price.ToString("c")
-                    <div class="btn btn-group">
-                        <a class="btn btn-success" id="cartButton" asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-productId="@Model.ProductId">
-                            Add
-                        </a>
-                    </div>
-                </h4>
-            </h3>
-
-            <div class="col-sm-5">
-                <h4>Product Details</h4>
-                @Model.ProductDetails
-            </div>
-
-            <table class="col-sm-3">
-                <caption>Nutrition</caption>
-                <thead>
+        <img height="350" style="float: left" class="marginTop1" src="@Model.ImageUrl" alt="ProductImage" />
+            <h3 class="text-center">@Model.Name</h3>
+        <h4 class="text-center" style="margin-top: 5%">
+            <p>
+                @Model.Price £
+                <a class="btn btn-success" id="cartButton" asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-productId="@Model.ProductId">
+                    Add to cart
+                </a>
+                <table class="col-sm-4 marginTop1" style="float: right">
+                    <caption>Nutrition</caption>
+                    <thead>
                     <tr>
                         <th scope="col">Typical Values</th>
                         <th scope="col">per 100g :</th>
                     </tr>
-                </thead>
-                <tbody>
+                    </thead>
+                    <tbody>
                     <tr><th scope="row">Energy (kJ)</th><td>@Model.EnergyKj</td></tr>
                     <tr><th scope="row">Energy (kcal)</th><td>@Model.EnergyKcal</td></tr>
                     <tr><th scope="row">Fat (g)</th><td>@Model.Fat</td></tr>
@@ -43,13 +29,20 @@
                     <tr><th scope="row">of which sugars (g)</th><td>@Model.Sugars</td></tr>
                     <tr><th scope="row">Protein (g)</th><td>@Model.Protein</td></tr>
                     <tr><th scope="row">Salt (g)</th><td>@Model.Salt</td></tr>
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </p>
+
+        </h4>
+       
+        <div class="col-sm-12 marginTop">
+            <h4>Product Details</h4>
+            @Model.ProductDetails
         </div>
+
     </div>
 </div>
 @if (User.Identity.Name == "admin@admin.com")
 {
     <a asp-action="Delete" asp-route-id="@Model.ProductId" class="text-danger" onclick="return confirm('Are you sure to delete this product?')">Delete Product<i class="fa fa-trash-alt fa-lg"></i></a>
 }
-

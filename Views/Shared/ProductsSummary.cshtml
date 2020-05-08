@@ -11,7 +11,7 @@
             </h5>
         </div>
         <div class="text-right">
-            <h4>@Model.Price.ToString("c")</h4>
+            <h4>@Model.Price £</h4>
             <a class="btn btn-success" id="cartButton" asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-productId="@Model.ProductId">
                 Add to cart
             </a>
